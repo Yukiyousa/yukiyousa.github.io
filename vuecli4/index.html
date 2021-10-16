@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Vue CLI4配置 - Yuki</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Vue CLI4配置" />
+<meta property="og:description" content="Vue简介 Vue 是一套用于构建用户界面的渐进式框架。Vue对于初学者来说容易上手，官方教程文档也很全面且清楚，是快速建立项目不错的选择。 在学习完" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yukiyousa.github.io/vuecli4/" /><meta property="og:image" content="https://yukiyousa.github.io/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yukiyousa.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Vue CLI4配置"/>
+<meta name="twitter:description" content="Vue简介 Vue 是一套用于构建用户界面的渐进式框架。Vue对于初学者来说容易上手，官方教程文档也很全面且清楚，是快速建立项目不错的选择。 在学习完"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yukiyousa.github.io/vuecli4/" /><link rel="next" href="https://yukiyousa.github.io/demo/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Vue CLI4配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yukiyousa.github.io\/vuecli4\/"
+        },"image": ["https:\/\/yukiyousa.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Web","wordcount":  1295 ,
+        "url": "https:\/\/yukiyousa.github.io\/vuecli4\/","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/yukiyousa.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Yuki"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Yuki"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Yuki`s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/Yukiyousa" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Yuki"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>Yuki`s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/Yukiyousa" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Vue CLI4配置</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yuki</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/web/"><i class="far fa-folder fa-fw"></i>Web</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001-01-01">0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1295 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#安装nodejs">安装node.js</a></li>
+    <li><a href="#npm换源">npm换源</a></li>
+    <li><a href="#安装vue-cli4">安装Vue CLI4</a></li>
+    <li><a href="#开始创建一个项目">开始创建一个项目</a></li>
+    <li><a href="#安装axios">安装axios</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#public">public</a></li>
+    <li><a href="#src">src</a></li>
+    <li><a href="#packagejson">package.json</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="vue简介">Vue简介</h1>
+<p>Vue 是一套用于构建用户界面的渐进式框架。Vue对于初学者来说容易上手，官方教程文档也很全面且清楚，是快速建立项目不错的选择。</p>
+<p>在学习完Vue的基础后，可以通过使用Vue CLI快速搭建一个属于自己的项目！</p>
+<h1 id="cl4配置">CL4配置</h1>
+<p><code>Vue </code>提供了一个<code>CLI</code>，Vue CLI 是一个基于 Vue.js 进行快速开发的完整系统，为单页面应用 (SPA) 快速搭建繁杂的脚手架，CLI4的配置流程大致总结了流程如下：</p>
+<h2 id="安装nodejs">安装node.js</h2>
+<p>进入<a href="https://nodejs.org/en/" target="_blank" rel="noopener noreffer">node.js官网</a>根据系统安装<code>node.js</code>。安装完node.js之后，npm也会自动安装。查询是否安装成功的命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">node -v
+npm -v
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="npm换源">npm换源</h2>
+<p>使用<code>npm</code>安装一般比较慢，可以安装<a href="https://developer.aliyun.com/mirror/NPM?from=tnpm" target="_blank" rel="noopener noreffer">cnpm淘宝镜像</a>来替换<code>npm</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">cnpm -v
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="安装vue-cli4">安装Vue CLI4</h2>
+<p>进入终端，全局安装脚手架工具<code>vue-cli</code>，命令如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">npm install --global @vue-cli
+# OR
+yarn global add @vue/cli
+</code></pre></td></tr></table>
+</div>
+</div><p>若你已经安装过久版本，输入如下命令卸载Vue CLI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">npm uninstall vue-cli -g
+</code></pre></td></tr></table>
+</div>
+</div><p>查询是否安装成功及查询版本的命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Vue -V
+# OR
+vue --version
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="开始创建一个项目">开始创建一个项目</h2>
+<p>在终端输入vue create加项目名称创建一个新的项目：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">vue create project-name
+</code></pre></td></tr></table>
+</div>
+</div><p>选择预置，选择<code>Manually select features</code>自定义配置：</p>
+<p>至少选择<code>Babel</code> <code>Router</code> <code>Vuex</code> <code>Linter</code>，其他根据需求自主选择：</p>
+<p>选择语法检查器，可以默认，也可以选ESlint(语法检查非常严格)</p>
+<p>选择<code>In package.json</code> ，使用<code>package.json</code> 项目结构比较简单：</p>
+<p>进入项目根目录终端，运行项目：<code>npm run serve</code>，我们发现项目已经运行在本机服务器8080端口</p>
+<h2 id="安装axios">安装axios</h2>
+<p>在项目中可以选择使用原生<code>ajax</code>发起请求，也可以使用<code>axios</code>，终端进入项目，安装axios：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">npm --save install axios
+# OR
+npm install --save axios vue-axios
+</code></pre></td></tr></table>
+</div>
+</div><p>将下面代码加入入口main.js文件即可使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">import Vue from &#39;vue&#39;
+import axios from &#39;axios&#39;
+import VueAxios from &#39;vue-axios&#39;
+
+Vue.use(VueAxios, axios)
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="项目目总览">项目目总览</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">├── src
+│   ├── App.vue
+│   ├── assets
+│   │   └── logo.png
+│   ├── components//组件
+│   │   └──Helloworld.vue
+│   ├── views
+│   │   ├── About.vue
+│   │   └── Home.vue
+│   ├── main.js
+│   ├── router // 路由配置文件
+│   │   └── router.js  
+│   └── store
+│       └── store.js  
+├── README.md
+├── babel.config.js
+├── package-lock.json
+├── package.json
+└── babel.config.js
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="目录简介">目录简介</h1>
+<h2 id="public">public</h2>
+<p>public用于存放静态文件如index.html和favicon.ico
+public/index.html是项目生成的入口文件，webpack打包的js,css也会自动注入到该页面中。</p>
+<h2 id="src">src</h2>
+<p>src是存放各种vue文件和静态资源的地方</p>
+<ol>
+<li>src/assets用于存放各种静态文件，如图片</li>
+<li>src/compnents：用于存放公共组件</li>
+<li>src/views：用于存放写好的各种页面，如login等</li>
+<li>src/App.vue：项目主体vue模块，可以引入其他模块。它是项目的主组件，所有页面都是在app.vue下渲染的</li>
+<li>src/main.js：项目的入口文件，主要作用是初始化vue实例，同时可以在此文件中引用某些组件库或者全局挂在一些变量</li>
+<li>src/router.js：路由文件，简单来说就是各个页面的地址路径，同时可以直接在里边编写路由守卫</li>
+<li>src/store.js：主要用于保存项目的状态</li>
+</ol>
+<h2 id="packagejson">package.json</h2>
+<p>package.json文件包括：项目的基本信息、项目开发所需要模块、版本、项目名称等</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001-01-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/vuecli4/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://yukiyousa.github.io/vuecli4/" data-title="Vue CLI4配置" data-hashtags="Web"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://yukiyousa.github.io/vuecli4/" data-hashtag="Web"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://yukiyousa.github.io/vuecli4/" data-title="Vue CLI4配置"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://yukiyousa.github.io/vuecli4/" data-title="Vue CLI4配置"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://yukiyousa.github.io/vuecli4/" data-title="Vue CLI4配置" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/web/">Web</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+            <a href="/demo/" class="next" rel="next" title="测试">测试<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">xxxx</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
