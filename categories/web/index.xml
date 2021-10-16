@@ -3,10 +3,10 @@
         <title>Web - 分类 - Yuki</title>
         <link>https://yukiyousa.github.io/categories/web/</link>
         <description>Web - 分类 - Yuki</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><atom:link href="https://yukiyousa.github.io/categories/web/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 15 Oct 2021 19:19:15 &#43;0800</lastBuildDate><atom:link href="https://yukiyousa.github.io/categories/web/" rel="self" type="application/rss+xml" /><item>
     <title>Vue CLI4配置</title>
     <link>https://yukiyousa.github.io/vuecli4/</link>
-    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
+    <pubDate>Fri, 15 Oct 2021 19:19:15 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://yukiyousa.github.io/vuecli4/</guid>
     <description><![CDATA[Vue简介 Vue 是一套用于构建用户界面的渐进式框架。Vue对于初学者来说容易上手，官方教程文档也很全面且清楚，是快速建立项目不错的选择。 在学习完]]></description>
