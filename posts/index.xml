@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>所有文章 - Yuki</title>
+        <title>所有文章 - Yuki`s blog</title>
         <link>https://yukiyousa.cn/posts/</link>
-        <description>所有文章 | Yuki</description>
+        <description>所有文章 | Yuki`s blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yukiyousa.cn/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Hugo&#43;GithubPages搭建博客教程</title>
     <link>https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</link>
