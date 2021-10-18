@@ -5,7 +5,7 @@
 
 Yizhuo Ma（马一卓）
 
-I am currently a junior majoring in software engineering at University of Electronic Science and Technology of China, member of [ZeQi Studio](https://github.com/ZeQi-Studio). Now I'm an intern in Prof.Weizhong Qian's lab.
+I am currently a junior majoring in software engineering at University of Electronic Science and Technology of China, member of [ZeQi Studio](https://github.com/ZeQi-Studio).
 ## Education Experience
 
 2019~present, University of Electronic Science and Technology of China, B.E. in Software Engineering
