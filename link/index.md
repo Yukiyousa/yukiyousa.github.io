@@ -13,10 +13,6 @@
 <li>https://www.onesrc.cn/</li>
 <li>https://cdn.onesrc.cn/uploads/images/favicon.png</li>
 <li>onesrc.cn</li>
-<li>一元-ONESRC</li>
-<li>https://www.onesrc.cn/</li>
-<li>https://cdn.onesrc.cn/uploads/images/favicon.png</li>
-<li>onesrc.cn</li>
 </ul>
 <script>document.querySelectorAll('ul.flinks').forEach(function(e){let a=e;if(a){let ns=a.querySelectorAll("li");let str='<div style="display:inline-block;">';let bgid=0;const bgs=["bg-blue"];for(let i=0;i<ns.length;i+=4){str+=(`<div class="flink-item ${bgs[Math.floor(Math.random() * 1)]}"><div class="flink-title"><a href="${ns[i+1].innerText}"target="_blank"rel="external nofollow ugc">${ns[i].innerText}</a></div><div class="flink-link"><div class="flink-link-ico"style="background: url(${ns[i+2].innerText});background-size: 42px auto;"></div><div class="flink-link-text">${ns[i+3].innerText}</div></div></div>`)}str+=`</div>`;let n1=document.createElement("div");n1.innerHTML=str;a.parentNode.insertBefore(n1,a);a.style="display: none;"}else{console.log('No such id "flinks"')}});</script>
 
