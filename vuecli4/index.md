@@ -97,13 +97,13 @@ Vue.use(VueAxios, axios)
 │   ├── App.vue
 │   ├── assets
 │   │   └── logo.png
-│   ├── components//组件
+│   ├── components  # 组件
 │   │   └──Helloworld.vue
 │   ├── views
 │   │   ├── About.vue
 │   │   └── Home.vue
 │   ├── main.js
-│   ├── router // 路由配置文件
+│   ├── router  # 路由配置文件
 │   │   └── router.js  
 │   └── store
 │       └── store.js  

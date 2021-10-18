@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Notes - 分类 - Yuki</title>
+        <link>https://yukiyousa.cn/categories/notes/</link>
+        <description>Notes - 分类 - Yuki</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yukiyousa.cn/categories/notes/" rel="self" type="application/rss+xml" /><item>
+    <title>Hugo&#43;GithubPages搭建博客教程</title>
+    <link>https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</link>
+    <pubDate>Sun, 17 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</guid>
+    <description><![CDATA[之前用 typecho 搭的博客需要使用服务器，续不起阿里云服务器了（留下了贫穷的泪水，于是发现了好用的 Hugo ~ 1.Hugo初探 Hugo 是由 Go 语言实现的静态网站生成器]]></description>
+</item></channel>
+</rss>
