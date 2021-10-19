@@ -76,10 +76,7 @@ torch.split(tensor, split_size_or_sections, dim=0)  # 可以指定切分的长�
 
 ## 2.2数学操作
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/202004121543180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1emhvbmdxaWFuZw==,size_16,color_FFFFFF,t_70#pic_center)
-
-
-
+TODO
 
 
 
