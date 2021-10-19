@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Pytorch学习笔记（一）张量的定义与操作 - Yuki`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Pytorch学习笔记（一）张量的定义与操作" />
+<meta property="og:description" content="1.Tensor的创建 1.1Tensor的简介 （1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在Pytorch中，torch.Ten" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yukiyousa.cn/pytorch-note1/" /><meta property="og:image" content="https://yukiyousa.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-30T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yukiyousa.cn/logo.png"/>
+
+<meta name="twitter:title" content="Pytorch学习笔记（一）张量的定义与操作"/>
+<meta name="twitter:description" content="1.Tensor的创建 1.1Tensor的简介 （1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在Pytorch中，torch.Ten"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://s1.imagehub.cc/images/2021/10/16/yuki.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yukiyousa.cn/pytorch-note1/" /><link rel="prev" href="https://yukiyousa.cn/vuecli4/" /><link rel="next" href="https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Pytorch学习笔记（一）张量的定义与操作",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yukiyousa.cn\/pytorch-note1\/"
+        },"image": ["https:\/\/yukiyousa.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "深度学习, 笔记","wordcount":  767 ,
+        "url": "https:\/\/yukiyousa.cn\/pytorch-note1\/","datePublished": "2021-09-30T00:00:00+00:00","dateModified": "2021-09-30T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/yukiyousa.cn\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Yuki"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Yuki`s blog">Yuki`s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/link/"> 友链 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/Yukiyousa" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Yuki`s blog">Yuki`s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/link/" title="">友链</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/Yukiyousa" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Pytorch学习笔记（一）张量的定义与操作</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yuki</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-30">2021-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 767 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#11tensor的简介">1.1Tensor的简介</a></li>
+    <li><a href="#12tensor的创建">1.2Tensor的创建</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#21基本操作">2.1基本操作</a></li>
+    <li><a href="#22数学操作">2.2数学操作</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="1tensor的创建">1.Tensor的创建</h1>
+<h2 id="11tensor的简介">1.1Tensor的简介</h2>
+<p>（1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在Pytorch中，<code>torch.Tensor</code>是存储和变换数据的主要工具，它提供了GPU计算的自动求梯度等更多功能</p>
+<p>（2）Tensor与Variable：在0.4.0版本后均并入Tensor，Variable有下面五种属性</p>
+<ul>
+<li>data: 被包装的Tensor</li>
+<li>grad: data的梯度</li>
+<li>grad_fn: fn表示function的意思，记录我么创建的创建张量时用到的方法</li>
+<li>requires_grad: 指示是否需要梯度， 有的不需要梯度</li>
+<li>is_leaf: 指示是否是叶子节点（张量）</li>
+</ul>
+<p>（3）Tensor属性</p>
+<ul>
+<li>dtype：张量的数据类型，最常用<code>float32</code>和<code>int64</code></li>
+<li>shape：张量的形状</li>
+<li>device：张量所在的设备，CPU或GPU</li>
+</ul>
+<h2 id="12tensor的创建">1.2Tensor的创建</h2>
+<p>（1）直接创建张量<code>torch.Tensor()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">devicr</span><span class="o">=</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>（2）通过numpy数组生成<code>torch.from_numpy()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>（3）依据数值创建</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">()</span>  <span class="c1"># 创建全零张量</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">()</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">()</span>  <span class="c1"># t = torch.full((3,3), 10)</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">)</span>  <span class="c1"># 创建等差的1维张量,数值区间[start, end)，step表示步长</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">steps</span><span class="p">)</span>  <span class="c1"># 创建均分的1维张量,数值区间[start, end]，steps指的是列表的长度</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">()</span>  <span class="c1"># 创建对角矩阵，默认方阵</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>（4）依据概率创建张量<code>torch.noraml(mean, std, size, out=None)</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">torch</span><span class="o">.</span><span class="n">normal</span><span class="p">()</span>  <span class="c1"># mean是均值，std是标准差</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span>  <span class="c1"># 生成标准正态分布</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>  <span class="c1"># 生成均匀分布</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># 生成从0 - n-1的随机排列, n是张量的长度</span>
+</code></pre></td></tr></table>
+</div>
+</div><h1 id="2tensor的操作">2.Tensor的操作</h1>
+<h2 id="21基本操作">2.1基本操作</h2>
+<p>（1）拼接</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">torch,cat(tensors, dim, out=None)  # 将张量按维度dim进行拼接
+torch.stack(tensors, dim, out=None)  # 在新创建的维度dim上进行拼接 
+</code></pre></td></tr></table>
+</div>
+</div><p>（2）切分</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">torch</span><span class="o">.</span><span class="n">chunk</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 将张量按维度dim进行平均切分，返回值是张量列表</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">split_size_or_sections</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 可以指定切分的长度， split_size_or_sections为int时表示每一份的长度</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="22数学操作">2.2数学操作</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://img-blog.csdnimg.cn/202004121543180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1emhvbmdxaWFuZw==,size_16,color_FFFFFF,t_70#pic_center"
+        data-srcset="https://img-blog.csdnimg.cn/202004121543180.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1emhvbmdxaWFuZw==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center, https://img-blog.csdnimg.cn/202004121543180.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1emhvbmdxaWFuZw==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 1.5x, https://img-blog.csdnimg.cn/202004121543180.png?x-oss-process=image/watermark%2ctype_ZmFuZ3poZW5naGVpdGk%2cshadow_10%2ctext_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1emhvbmdxaWFuZw==%2csize_16%2ccolor_FFFFFF%2ct_70#pic_center 2x"
+        data-sizes="auto"
+        alt="https://img-blog.csdnimg.cn/202004121543180.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3d1emhvbmdxaWFuZw==,size_16,color_FFFFFF,t_70#pic_center"
+        title="在这里插入图片描述" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-09-30</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/pytorch-note1/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作" data-hashtags="深度学习,笔记"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://yukiyousa.cn/pytorch-note1/" data-hashtag="深度学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/vuecli4/" class="prev" rel="prev" title="Vue CLI4配置"><i class="fas fa-angle-left fa-fw"></i>Vue CLI4配置</a>
+            <a href="/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="next" rel="next" title="Hugo&#43;GithubPages搭建博客教程">Hugo&#43;GithubPages搭建博客教程<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
