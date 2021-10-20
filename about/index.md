@@ -14,7 +14,7 @@ I am currently a junior majoring in software engineering at University of Electr
 
 - National Encouragement scholarship    2020
 - The First Prize Scholarship    2020
-- Excellent student scholarship	2020,2021
+- Excellent Student Scholarship    2020,2021
 - National Second Prize of National College Student Information Security Contest(CISCN)    2021
 
 ## Contact
