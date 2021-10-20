@@ -4,11 +4,13 @@
 
 :link:[Jotang Studio](https://jotang.club/): 焦糖工作室
 
-:link:[Vera Xinyue Shen](https://www.zuozuovera.com/): 数据安全工程师&科幻小说家的优秀学姐
+:link:[Vera Xinyue Shen](https://www.zuozuovera.com/): 数据安全工程师&科幻小说家 优秀学姐
 
 :link:[sharifxu](https://sharifxu.top/): 老徐
 
-:link:[su29029](https://su29029.github.io/): web全栈&安全开发者苏佬
+:link:[Klay Sun](https://syy11.cn/): 择栖&前端大佬 孙哥哥
+
+:link:[su29029](https://su29029.github.io/): web全栈&安全开发者 苏佬
 
 :link:[Zhenyu He](https://hzy0.xyz/): 何神
 
