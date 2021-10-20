@@ -62,7 +62,7 @@ torch.randperm(n)  # 生成从0 - n-1的随机排列, n是张量的长度
 
 （1）拼接
 
-```
+```python
 torch,cat(tensors, dim, out=None)  # 将张量按维度dim进行拼接
 torch.stack(tensors, dim, out=None)  # 在新创建的维度dim上进行拼接 
 ```
