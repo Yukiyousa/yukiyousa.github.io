@@ -13,6 +13,27 @@
     <guid>https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</guid>
     <description><![CDATA[之前用 typecho 搭的博客需要使用服务器，续不起阿里云服务器了（留下了贫穷的泪水，于是发现了好用的 Hugo ~ 1.Hugo初探 Hugo 是由 Go 语言实现的静态网站生成器]]></description>
 </item><item>
+    <title>PyTorch学习笔记（五）损失函数与优化器</title>
+    <link>https://yukiyousa.cn/pytorch-note5/</link>
+    <pubDate>Sat, 09 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://yukiyousa.cn/pytorch-note5/</guid>
+    <description><![CDATA[1.损失函数 损失函数是衡量模型输出与真实情况差异的标准，我们所说的优化即优化网络权值使得损失函数变得更小，一般而言在机器学习中往往有三个概念]]></description>
+</item><item>
+    <title>PyTorch学习笔记（四）模型搭建与权值初始化</title>
+    <link>https://yukiyousa.cn/pytorch-note4/</link>
+    <pubDate>Tue, 05 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://yukiyousa.cn/pytorch-note4/</guid>
+    <description><![CDATA[1.模型构建步骤 1.1两大模块 构建子模块：卷积层、池化层、全连接层，自己建立的模型（继承nn.Module）的__init__()方法 拼接子]]></description>
+</item><item>
+    <title>PyTorch学习笔记（三）数据读取机制与图像预处理模块</title>
+    <link>https://yukiyousa.cn/pytorch-note3/</link>
+    <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://yukiyousa.cn/pytorch-note3/</guid>
+    <description><![CDATA[1.数据读取机制 读取数据的基本流程是： 将存储图片的路径和标签信息转为list，该list可以通过index选取一个元素对应一个样本 通过get]]></description>
+</item><item>
     <title>PyTorch学习笔记（二）计算图与自动求梯度</title>
     <link>https://yukiyousa.cn/pytorch-note2/</link>
     <pubDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</pubDate>
