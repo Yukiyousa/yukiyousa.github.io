@@ -1,6 +1,6 @@
 # 友链
 
-:link:[ZeQi Studio](https://github.com/ZeQi-Studio): 择栖工作室
+:link:[ZeQi Studio](https://sise.uestc.edu.cn/info/1049/4169.htm): 择栖工作室
 
 :link:[Jotang Studio](https://jotang.club/): 焦糖工作室
 
