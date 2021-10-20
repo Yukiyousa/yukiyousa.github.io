@@ -2,7 +2,7 @@
 
 :link:[ZeQi Studio](https://github.com/ZeQi-Studio): 择栖工作室
 
-:link:[Jotang Studio](https://github.com/ZeQi-Studio): 焦糖工作室
+:link:[Jotang Studio](https://jotang.club/): 焦糖工作室
 
 :link:[Vera Xinyue Shen](https://www.zuozuovera.com/): 数据安全工程师&科幻小说家的优秀学姐
 
