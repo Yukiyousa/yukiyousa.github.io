@@ -5,30 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>Pytorch学习笔记（一）张量的定义与操作 - Yuki`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Pytorch学习笔记（一）张量的定义与操作" />
-<meta property="og:description" content="1.Tensor的创建 1.1Tensor的简介 （1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在Pytorch中，torch.Ten" />
+        <title>PyTorch学习笔记（一）张量的定义与操作 - Yuki`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="PyTorch学习笔记（一）张量的定义与操作" />
+<meta property="og:description" content="1.Tensor的创建 1.1Tensor的简介 （1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在PyTorch中，torch.Ten" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yukiyousa.cn/pytorch-note1/" /><meta property="og:image" content="https://yukiyousa.cn/logo.png"/><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-30T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-30T00:00:00+00:00" />
+<meta property="article:published_time" content="2021-09-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-29T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://yukiyousa.cn/logo.png"/>
 
-<meta name="twitter:title" content="Pytorch学习笔记（一）张量的定义与操作"/>
-<meta name="twitter:description" content="1.Tensor的创建 1.1Tensor的简介 （1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在Pytorch中，torch.Ten"/>
+<meta name="twitter:title" content="PyTorch学习笔记（一）张量的定义与操作"/>
+<meta name="twitter:description" content="1.Tensor的创建 1.1Tensor的简介 （1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在PyTorch中，torch.Ten"/>
 <meta name="application-name" content="LoveIt">
-<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://s1.imagehub.cc/images/2021/10/16/yuki.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yukiyousa.cn/pytorch-note1/" /><link rel="prev" href="https://yukiyousa.cn/vuecli4/" /><link rel="next" href="https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://s1.imagehub.cc/images/2021/10/16/yuki.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yukiyousa.cn/pytorch-note1/" /><link rel="prev" href="https://yukiyousa.cn/vuecli4/" /><link rel="next" href="https://yukiyousa.cn/pytorch-note2/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Pytorch学习笔记（一）张量的定义与操作",
+        "headline": "PyTorch学习笔记（一）张量的定义与操作",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yukiyousa.cn\/pytorch-note1\/"
         },"image": ["https:\/\/yukiyousa.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "深度学习, 笔记","wordcount":  768 ,
-        "url": "https:\/\/yukiyousa.cn\/pytorch-note1\/","datePublished": "2021-09-30T00:00:00+00:00","dateModified": "2021-09-30T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        "url": "https:\/\/yukiyousa.cn\/pytorch-note1\/","datePublished": "2021-09-29T00:00:00+00:00","dateModified": "2021-09-29T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/yukiyousa.cn\/images\/avatar.png"},"author": {
                 "@type": "Person",
@@ -102,9 +102,9 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Pytorch学习笔记（一）张量的定义与操作</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">PyTorch学习笔记（一）张量的定义与操作</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yuki</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-30">2021-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 768 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-29">2021-09-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 768 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -124,7 +124,7 @@
 </nav></div>
             </div><div class="content" id="content"><h1 id="1tensor的创建">1.Tensor的创建</h1>
 <h2 id="11tensor的简介">1.1Tensor的简介</h2>
-<p>（1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在Pytorch中，<code>torch.Tensor</code>是存储和变换数据的主要工具，它提供了GPU计算的自动求梯度等更多功能</p>
+<p>（1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在PyTorch中，<code>torch.Tensor</code>是存储和变换数据的主要工具，它提供了GPU计算的自动求梯度等更多功能</p>
 <p>（2）Tensor与Variable：在0.4.0版本后均并入Tensor，Variable有下面五种属性</p>
 <ul>
 <li>data: 被包装的Tensor</li>
@@ -224,7 +224,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-09-30</span>
+                <span>更新于 2021-09-29</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -233,7 +233,7 @@
                             <a class="link-to-markdown" href="/pytorch-note1/index.md" target="_blank">阅读原始文档</a>
                         </span></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作" data-hashtags="深度学习,笔记"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://yukiyousa.cn/pytorch-note1/" data-hashtag="深度学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="Pytorch学习笔记（一）张量的定义与操作" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="PyTorch学习笔记（一）张量的定义与操作" data-hashtags="深度学习,笔记"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://yukiyousa.cn/pytorch-note1/" data-hashtag="深度学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="PyTorch学习笔记（一）张量的定义与操作"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="PyTorch学习笔记（一）张量的定义与操作"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://yukiyousa.cn/pytorch-note1/" data-title="PyTorch学习笔记（一）张量的定义与操作" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -246,7 +246,7 @@
     </div>
 
     <div class="post-nav"><a href="/vuecli4/" class="prev" rel="prev" title="Vue CLI4配置"><i class="fas fa-angle-left fa-fw"></i>Vue CLI4配置</a>
-            <a href="/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="next" rel="next" title="Hugo&#43;GithubPages搭建博客教程">Hugo&#43;GithubPages搭建博客教程<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/pytorch-note2/" class="next" rel="next" title="PyTorch学习笔记（二）计算图与自动求梯度">PyTorch学习笔记（二）计算图与自动求梯度<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

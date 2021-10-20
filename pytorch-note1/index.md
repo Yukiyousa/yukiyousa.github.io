@@ -1,11 +1,11 @@
-# Pytorch学习笔记（一）张量的定义与操作
+# PyTorch学习笔记（一）张量的定义与操作
 
 
 # 1.Tensor的创建
 
 ## 1.1Tensor的简介
 
-（1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在Pytorch中，`torch.Tensor`是存储和变换数据的主要工具，它提供了GPU计算的自动求梯度等更多功能
+（1）张量是一个多维数组，是标量、向量、矩阵的高维扩展，在PyTorch中，`torch.Tensor`是存储和变换数据的主要工具，它提供了GPU计算的自动求梯度等更多功能
 
 （2）Tensor与Variable：在0.4.0版本后均并入Tensor，Variable有下面五种属性
 
