@@ -22,4 +22,3 @@ I am currently a junior majoring in software engineering at University of Electr
 [Email](yizhuo.ma@outlook.com)
 
 
-![Yukiyousa's GitHub stats](https://github-readme-stats.vercel.app/api?username=yukiyousa)
