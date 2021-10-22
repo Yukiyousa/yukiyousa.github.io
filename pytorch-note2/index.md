@@ -11,7 +11,9 @@
 
 计算图是用于描述计算的**有向无环图**，我们都知道图包括节点和边，在计算图中节点代表数据，边代表运算
 
+<div align=center>
 <img src="https://s1.imagehub.cc/images/2021/10/20/compute_graph9e064e5ba5444736.png" alt="compute_graph9e064e5ba5444736.png" style="zoom: 50%;" />
+</div>
 
 ### 1.1.2张量的属性
 

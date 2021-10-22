@@ -12,7 +12,7 @@
 什么？你问我应该选什么题目？
 
 <div align=center>
-<img src="https://s1.imagehub.cc/images/2021/10/21/fishfec627df195030fe.jpg" alt="fish" />
+<img src="https://s1.imagehub.cc/images/2021/10/21/fishb0e1e83d339b9275.jpg" alt="fish" />
 </div>
 
 **二、背景调研与计划**

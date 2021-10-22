@@ -134,7 +134,9 @@
 <h3 id="111定义">1.1.1定义</h3>
 <p>随着神经网络层数的加深，各种张量间的计算变得越来越复杂，各个计算之间应该并行执行还是顺序执行？底层设备如何避免重复计算减少冗余？如何提高计算效率？我们使用计算图解决这些问题。</p>
 <p>计算图是用于描述计算的<strong>有向无环图</strong>，我们都知道图包括节点和边，在计算图中节点代表数据，边代表运算</p>
-<p><img src="https://s1.imagehub.cc/images/2021/10/20/compute_graph9e064e5ba5444736.png" alt="compute_graph9e064e5ba5444736.png" style="zoom: 50%;" /></p>
+<div align=center>
+<img src="https://s1.imagehub.cc/images/2021/10/20/compute_graph9e064e5ba5444736.png" alt="compute_graph9e064e5ba5444736.png" style="zoom: 50%;" />
+</div>
 <h3 id="112张量的属性">1.1.2张量的属性</h3>
 <p>在计算图中张量有重要的几个属性</p>
 <p>（1） <code>is_leaf</code>：叶子节点是直接创建的节点，设置叶子节点的目的是<strong>节省内存</strong>，在反向传播后，非叶子节点是直接被释放掉的</p>
