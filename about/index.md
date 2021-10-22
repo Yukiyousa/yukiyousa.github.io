@@ -8,7 +8,9 @@ Yizhuo Ma（马一卓）
 I am currently a junior majoring in software engineering at University of Electronic Science and Technology of China, member of [ZeQi Studio](https://sise.uestc.edu.cn/info/1049/4169.htm).
 ## Education Experience
 
-2019~present, University of Electronic Science and Technology of China, B.E. in Software Engineering
+<dl><dt><img align="left" width=80" height="80" hspace="10" src="https://s1.imagehub.cc/images/2021/10/22/uestc.png" /></dt><dt>  <b>  University of Electronic Science and Technology of China</b></i></dt>
+<dt>  Sep. 2019 ~ present</dt>
+<dt>  B.E. in Software Engineering</dt></dl>
 
 ## Awards and Scholarship
 
