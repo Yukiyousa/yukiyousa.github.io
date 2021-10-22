@@ -11,8 +11,8 @@
 ## 1.2具体步骤
 
 - 首先，必须继承 **nn.Module** 这个类，要让 PyTorch 知道这个类是一个 Module。
-- 其次，在**init(self)**中设置好需要的“组件"(如 conv、pooling、Linear、BatchNorm 等)。 
-- 最后，在 **forward(self, x)**中用定义好的“组件”进行组装，就像搭积木把网络结构搭建 出来，这样一个模型就定义好了。
+- 其次，在 **init(self)** 中设置好需要的“组件"(如 conv、pooling、Linear、BatchNorm 等)。 
+- 最后，在 **forward(self, x)** 中用定义好的“组件”进行组装，就像搭积木把网络结构搭建 出来，这样一个模型就定义好了。
 
 # 2.nn.Module类
 

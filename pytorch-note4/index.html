@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yukiyousa.cn\/pytorch-note4\/"
-        },"image": ["https:\/\/yukiyousa.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "深度学习, 笔记","wordcount":  1339 ,
+        },"image": ["https:\/\/yukiyousa.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "深度学习, 笔记","wordcount":  1323 ,
         "url": "https:\/\/yukiyousa.cn\/pytorch-note4\/","datePublished": "2021-10-05T00:00:00+00:00","dateModified": "2021-10-05T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/yukiyousa.cn\/images\/avatar.png"},"author": {
@@ -104,7 +104,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">PyTorch学习笔记（四）模型搭建与权值初始化</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yuki</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-05">2021-10-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1339 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-05">2021-10-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1323 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -148,8 +148,8 @@
 <h2 id="12具体步骤">1.2具体步骤</h2>
 <ul>
 <li>首先，必须继承 <strong>nn.Module</strong> 这个类，要让 PyTorch 知道这个类是一个 Module。</li>
-<li>其次，在**init(self)**中设置好需要的“组件&quot;(如 conv、pooling、Linear、BatchNorm 等)。</li>
-<li>最后，在 **forward(self, x)**中用定义好的“组件”进行组装，就像搭积木把网络结构搭建 出来，这样一个模型就定义好了。</li>
+<li>其次，在 <strong>init(self)</strong> 中设置好需要的“组件&quot;(如 conv、pooling、Linear、BatchNorm 等)。</li>
+<li>最后，在 <strong>forward(self, x)</strong> 中用定义好的“组件”进行组装，就像搭积木把网络结构搭建 出来，这样一个模型就定义好了。</li>
 </ul>
 <h1 id="2nnmodule类">2.nn.Module类</h1>
 <p>torch.nn是神经网络模块，有以下子模块</p>
