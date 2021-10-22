@@ -19,5 +19,4 @@ I am currently a junior majoring in software engineering at University of Electr
 
 ## Contact
 
- <a href="mailto: yukiyousa@163.com">Email</a>
-
+Email: yukiyousa@163.com
