@@ -11,7 +11,7 @@
 
 什么？你问我应该选什么题目？
 
-![fish.jpg](https://s1.imagehub.cc/images/2021/10/21/fishfec627df195030fe.jpg)
+<div align=center>![fish.jpg](https://s1.imagehub.cc/images/2021/10/21/fishfec627df195030fe.jpg)</div>
 
 **二、背景调研与计划**
 
