@@ -17,11 +17,6 @@ I am currently a junior majoring in software engineering at University of Electr
 - National Second Prize of National College Student Information Security Contest(CISCN)    2021
 - ...
 
-# Find me
-
-- [CSDN](https://blog.csdn.net/qq_45359086)
-- [Github](https://github.com/Yukiyousa)
-
 ## Contact
 
 <a href="mailto: yukiyousa@163.com">Email</a>
