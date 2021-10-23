@@ -10,11 +10,11 @@
 
 :link:[Klay Sun](https://syy11.cn/): 择栖&前端大佬 孙哥哥
 
-:link:[sharifxu](https://sharifxu.top/): 嵌入式&安全 小马哥
+:link:[sharifxu](https://sharifxu.top/): 嵌入式&区块链安全 小马哥
 
-:link:[su29029](https://su29029.github.io/): web全栈&安全开发者 苏佬
+:link:[su29029](https://su29029.github.io/): web全栈&安全开发 苏佬
 
-:link:[Zhenyu He](https://hzy0.xyz/): 何神
+:link:[Zhenyu He](https://hzy0.xyz/): THU RA&NLP&DM 何神
 
 :link:[rufus](https://rufus844789771.gitee.io/): 六只羊
 
