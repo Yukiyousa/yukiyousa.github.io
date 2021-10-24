@@ -78,7 +78,7 @@ model pre-training 和 MAML 的区别是损失是不同的。
 - model pre-training 找一组初始化参数在所有的task上得到好的效果（**现在表现的效果**）
 
 <div align=center>
-![contrast1bece23ba68f2b27.png](https://s1.imagehub.cc/images/2021/10/23/contrast1bece23ba68f2b27.png)
+<img src="https://s1.imagehub.cc/images/2021/10/23/contrast1bece23ba68f2b27.png" alt="image" />
 </div>
 
 ## 2.3算法流程
@@ -86,7 +86,7 @@ model pre-training 和 MAML 的区别是损失是不同的。
 MAML中是存在**两种梯度下降**的，也就是**gradient by gradient**。**第一种梯度下降**是每个task都会执行的，而**第二种梯度下降**只有等batch size个task全部完成第一种梯度下降后才会执行的。
 
 <div align=center>
-![4S5OBIIQ8A5CN_71CO.png](https://s1.imagehub.cc/images/2021/09/22/4S5OBIIQ8A5CN_71CO.png)
+<img src="https://s1.imagehub.cc/images/2021/09/22/4S5OBIIQ8A5CN_71CO.png" alt="image" />
 </div>
 
 以 **5-way 5-shot** 例子为例，算法流程如下
