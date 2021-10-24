@@ -3,10 +3,6 @@
 
 ## About me
 
-<div align=center>
-<img src="https://github-readme-stats.vercel.app/api?username=yukiyousa" alt="profile" />
-</div>
-
 I am currently a junior majoring in software engineering at University of Electronic Science and Technology of China, member of [ZeQi Studio](https://sise.uestc.edu.cn/info/1049/4169.htm).
 ## Education Experience
 
@@ -19,6 +15,7 @@ I am currently a junior majoring in software engineering at University of Electr
 - The First Prize Scholarship    2020
 - Excellent Student Scholarship    2020,2021
 - National Second Prize of National College Student Information Security Contest(CISCN)    2021
+- National Third Prize of The 17th Challenge Cup Special Competition    2021
 - ...
 
 ## Contact
