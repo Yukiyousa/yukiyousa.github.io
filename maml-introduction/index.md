@@ -29,7 +29,7 @@
 
 - 找一个最好的 F* 使 Loss 最小，得到学习算法 F*
 
-- 测试时我们首先用 **testing set 的support set去让 F* 找出 f * **，然后使用 f* 来对 testing set 的query set 进行测试
+- 测试时我们首先用 testing set 的 support set 去让 F* 找出 f* ，然后使用 f* 来对 testing set 的 query set 进行测试
 
 <div align=center>
 <img src="https://img-blog.csdnimg.cn/2020052808373588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjk0NTA0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 33%;" />
