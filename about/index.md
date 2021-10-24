@@ -4,7 +4,7 @@
 ## About me
 
 <div align=center>
-![Yukiyousa's GitHub stats](https://github-readme-stats.vercel.app/api?username=yukiyousa)
+<img src="https://github-readme-stats.vercel.app/api?username=yukiyousa" alt="profile" />
 </div>
 
 I am currently a junior majoring in software engineering at University of Electronic Science and Technology of China, member of [ZeQi Studio](https://sise.uestc.edu.cn/info/1049/4169.htm).
