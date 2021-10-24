@@ -3,7 +3,14 @@
         <title>笔记 - 标签 - Yuki`s blog</title>
         <link>https://yukiyousa.cn/tags/%E7%AC%94%E8%AE%B0/</link>
         <description>笔记 - 标签 - Yuki`s blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yukiyousa.cn/tags/%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 23 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://yukiyousa.cn/tags/%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+    <title>Model-Agnostic Meta-Learning（MAML）介绍与算法分析</title>
+    <link>https://yukiyousa.cn/maml-introduction/</link>
+    <pubDate>Sat, 23 Oct 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://yukiyousa.cn/maml-introduction/</guid>
+    <description><![CDATA[1.Meta-Learning 1.1介绍 常见的深度学习模型，目的是学习一个用于预测的网络模型，比如能够实现猫狗分类的模型，我们学习训练的是模型的参数，学习的目的是让最终]]></description>
+</item><item>
     <title>Hugo&#43;GithubPages搭建博客教程</title>
     <link>https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/</link>
     <pubDate>Sun, 17 Oct 2021 00:00:00 &#43;0000</pubDate>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Model-Agnostic Meta-Learning（MAML）介绍与算法分析 - Yuki`s blog</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Model-Agnostic Meta-Learning（MAML）介绍与算法分析" />
+<meta property="og:description" content="1.Meta-Learning 1.1介绍 常见的深度学习模型，目的是学习一个用于预测的网络模型，比如能够实现猫狗分类的模型，我们学习训练的是模型的参数，学习的目的是让最终" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yukiyousa.cn/maml-introduction/" /><meta property="og:image" content="https://yukiyousa.cn/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-10-23T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://yukiyousa.cn/logo.png"/>
+
+<meta name="twitter:title" content="Model-Agnostic Meta-Learning（MAML）介绍与算法分析"/>
+<meta name="twitter:description" content="1.Meta-Learning 1.1介绍 常见的深度学习模型，目的是学习一个用于预测的网络模型，比如能够实现猫狗分类的模型，我们学习训练的是模型的参数，学习的目的是让最终"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://s1.imagehub.cc/images/2021/10/16/yuki.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://yukiyousa.cn/maml-introduction/" /><link rel="prev" href="https://yukiyousa.cn/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Model-Agnostic Meta-Learning（MAML）介绍与算法分析",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/yukiyousa.cn\/maml-introduction\/"
+        },"image": ["https:\/\/yukiyousa.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "深度学习, 笔记","wordcount":  1907 ,
+        "url": "https:\/\/yukiyousa.cn\/maml-introduction\/","datePublished": "2021-10-23T00:00:00+00:00","dateModified": "2021-10-23T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/yukiyousa.cn\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Yuki"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Yuki`s blog">Yuki`s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/link/"> 友链 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/Yukiyousa" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Yuki`s blog">Yuki`s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/link/" title="">友链</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/Yukiyousa" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Model-Agnostic Meta-Learning（MAML）介绍与算法分析</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yuki</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-23">2021-10-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1907 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#11介绍">1.1介绍</a></li>
+    <li><a href="#12训练">1.2训练</a></li>
+    <li><a href="#13相关概念">1.3相关概念</a>
+      <ul>
+        <li><a href="#131-n-way-k-shot">1.3.1 N-way K-shot</a></li>
+        <li><a href="#132-task">1.3.2 task</a></li>
+        <li><a href="#133-model-agnostic">1.3.3 Model-Agnostic</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#21基本思想">2.1基本思想</a></li>
+    <li><a href="#22maml与model-pre-training">2.2MAML与model Pre-training</a></li>
+    <li><a href="#23算法流程">2.3算法流程</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="1meta-learning">1.Meta-Learning</h1>
+<h2 id="11介绍">1.1介绍</h2>
+<p>常见的深度学习模型，目的是学习一个用于预测的网络模型，比如能够实现猫狗分类的模型，我们学习训练的是<strong>模型的参数</strong>，学习的目的是让最终训练好的参数在数据集上的准确率越高，但 <code>Meta Learning</code> 面向是的学习的过程而非结果，如我们在学习英语时，若是模仿apple 的发音，我们能很快的学会说这个单词，但当我们碰到新的单词如 banana 时会无从下手，这就是我们学习音标的原因，学习音标的过程正是元学习的体现。</p>
+<p>（1）<code>Meta Learning</code> 中文翻译为“元学习”，它研究的不是如何提升模型解决某项具体的任务（分类，回归，检测）的能力，而是研究如何提升模型解决一系列任务的能力；Meta learning 即 learn to learn ，我们希望机器学习怎样去学习这件事情，就是学会语音辨识、图像辨识以后，它学会了如何去学习学习这件事情，而不是停留在语音和图像的任务上。</p>
+<p>（2）我们希望通过 <code>meta-learning</code> 学习出一个<strong>非常好</strong>的<strong>模型初始化参数</strong>，有了这个初始化参数后，我们只需要<strong>少量的样本</strong>就可以快速在这个模型中进行收敛。</p>
+<blockquote>
+<p>meta-learning 在 few-shot 中经常使用，因为 meta learning  的训练任务很多，因此每个任务的样本很少。</p>
+</blockquote>
+<p>（3）在 <code>meta-learning</code> 中，把学习算法也当作一个函数 F ，吃进去的是训练资料，吐出来另外一个function，要找一个函数 F，输入是训练资料输出是模型</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>目的</th>
+<th>输入</th>
+<th>函数</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>机器学习</td>
+<td>通过训练数据学习输入X与输出Y之间的映射，找到函数f</td>
+<td>X</td>
+<td>f</td>
+<td>Y</td>
+</tr>
+<tr>
+<td>元学习</td>
+<td>通过task找到函数F，F可以输出一个函数f，f用于新的任务</td>
+<td>task</td>
+<td>F</td>
+<td>f</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12训练">1.2训练</h2>
+<ul>
+<li>
+<p>首先定义 F 的损失函数（N 表示 N 个 task ，l<sup>n</sup> 表示第 n 个 task 的损失）
+$$
+L(F)=\sum_{n=1}^{N}l^{n}
+$$</p>
+</li>
+<li>
+<p>找一个最好的 F* 使 Loss 最小，得到学习算法 F*</p>
+</li>
+<li>
+<p>测试时我们首先用 *<em>testing set 的support set去让 F</em> 找出 f * *<em>，然后使用 f</em> 来对 testing set 的query set 进行测试</p>
+</li>
+</ul>
+<div align=center>
+<img src="https://img-blog.csdnimg.cn/2020052808373588.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjk0NTA0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 33%;" />
+</div>
+<h2 id="13相关概念">1.3相关概念</h2>
+<h3 id="131-n-way-k-shot">1.3.1 N-way K-shot</h3>
+<p>在 <code>few-shot learning</code> 中有一个术语叫做 <code>N-way K-shot</code> 问题，简单的说就是我们需要分类的样本属于 N 个类中一种，但是我们每个类训练集中的样本只有 K 个，即一共只有 N ∗ K 个样本的类别是已知的。</p>
+<h3 id="132-task">1.3.2 task</h3>
+<p>既然是学会学习，那么输入就不是简简单单的数据了，而是一组一组的 <code>task</code> ，比如猫狗分类、水果分类等等都是一个个 <code>task</code> ，那么这些 <code>task</code> 应该如何分类呢？</p>
+<p>在 machine learning 中，准备训练集和测试集，在 meta learning 中，准备训练任务及其对应的资料</p>
+<ul>
+<li>在训练中将 task 划分为 <code>training tasks</code> 和 <code>testing tasks</code></li>
+<li>在few-shot中，通常把上述的 tasks 中的 train 和 test 称为 <code>support set</code> 和 <code>query set</code> 。</li>
+</ul>
+<div align=center>
+<img src="https://img-blog.csdnimg.cn/20200716103136708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDU1NDMzNw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 50%;" />
+</div>
+<h3 id="133-model-agnostic">1.3.3 Model-Agnostic</h3>
+<p><code>Model-Agnostic</code> 即模型无关，这里的模型无关意思是 <strong>MAML</strong> 可以用于 <strong>CNN RNN</strong> 甚至 <strong>RL</strong> 中，绝大多数深度学习模型都可以作为 base-learner 无缝嵌入MAML中</p>
+<h1 id="2maml">2.MAML</h1>
+<h2 id="21基本思想">2.1基本思想</h2>
+<p>（1）目的：学 MAML 的思想是学习一套初始化参数 ，这个初始化参数在遇到新的问题时，只需要使用少量的样本 (few-shot learning) 进行几步梯度下降就可以取得很好地效果</p>
+<p>（2）方法：定义损失函数，提供一套初始化参数，然后让网络在不同 task 上去训练，最终得到属于不同task的网络参数，然后评估这些不同的网络参数在各自 task 上的测试集里表现如何，得知最初的这套初始化参数到底怎么样。</p>
+<div align=center>
+<img src="https://img-blog.csdnimg.cn/20191008213431186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoYW95dWUxMjM0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 33%;" />
+</div>
+<h2 id="22maml与model-pre-training">2.2MAML与model Pre-training</h2>
+<p>model pre-training 和 MAML 的区别是损失是不同的。</p>
+<ul>
+<li>MAML找一组初始化参数经过训练得到好的结果（<strong>潜力</strong>）</li>
+<li>model pre-training 找一组初始化参数在所有的task上得到好的效果（<strong>现在表现的效果</strong>）</li>
+</ul>
+<div align=center>
+![contrast1bece23ba68f2b27.png](https://s1.imagehub.cc/images/2021/10/23/contrast1bece23ba68f2b27.png)
+</div>
+<h2 id="23算法流程">2.3算法流程</h2>
+<p>MAML中是存在<strong>两种梯度下降</strong>的，也就是<strong>gradient by gradient</strong>。<strong>第一种梯度下降</strong>是每个task都会执行的，而<strong>第二种梯度下降</strong>只有等batch size个task全部完成第一种梯度下降后才会执行的。</p>
+<div align=center>
+![4S5OBIIQ8A5CN_71CO.png](https://s1.imagehub.cc/images/2021/09/22/4S5OBIIQ8A5CN_71CO.png)
+</div>
+<p>以 <strong>5-way 5-shot</strong> 例子为例，算法流程如下</p>
+<ul>
+<li>MAML在 task 上进行训练，training tasks 分为若干个 task ，每个 task 又区分了 support set 和 query set</li>
+<li>我们用于训练的模型架构是 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D"
+        data-srcset="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D, https://www.zhihu.com/equation?tex=M_%7Bmeta%7D 1.5x, https://www.zhihu.com/equation?tex=M_%7Bmeta%7D 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D"
+        title="[公式]" /> (初始化参数为<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Cphi"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Cphi, https://www.zhihu.com/equation?tex=%5Cphi 1.5x, https://www.zhihu.com/equation?tex=%5Cphi 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Cphi"
+        title="[公式]" />)，假设是一个输出节点为 5 的CNN，训练的目的是为了使得模型有<strong>较优秀</strong>的初始化参数</li>
+<li>我们将<strong>1个任务task</strong>的<strong>support set</strong>去训练 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D"
+        data-srcset="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D, https://www.zhihu.com/equation?tex=M_%7Bmeta%7D 1.5x, https://www.zhihu.com/equation?tex=M_%7Bmeta%7D 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D"
+        title="[公式]" /> ，这里进行<strong>第一种梯度下降</strong>，也就是 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B1%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B1%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B1%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 1.5x, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B1%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B1%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        title="[公式]" /> 。在执行第2个task训练时，有 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B2%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B2%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B2%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 1.5x, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B2%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7B2%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        title="[公式]" /> 。执行第 batch size 个 task 后，有 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bbz%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bbz%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bbz%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 1.5x, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bbz%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bbz%7D%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;l%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        title="[公式]" /></li>
+<li>上述步骤3用了 batch size 个 task 对 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D"
+        data-srcset="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D, https://www.zhihu.com/equation?tex=M_%7Bmeta%7D 1.5x, https://www.zhihu.com/equation?tex=M_%7Bmeta%7D 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=M_%7Bmeta%7D"
+        title="[公式]" /> 进行了训练，然后我们使用上述batch个task中地<strong>query set</strong>去测试参数为<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%2Ci%5Cin%5B1%2Cbatch&#43;size%5D"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%2Ci%5Cin%5B1%2Cbatch&#43;size%5D, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%2Ci%5Cin%5B1%2Cbatch&#43;size%5D 1.5x, https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%2Ci%5Cin%5B1%2Cbatch&#43;size%5D 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%2Ci%5Cin%5B1%2Cbatch&#43;size%5D"
+        title="[公式]" />，获得总损失函数 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=L%28%5Cphi%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bbs%7D%7Bl%5E%7Bi%7D%28%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%29%7D"
+        data-srcset="https://www.zhihu.com/equation?tex=L%28%5Cphi%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bbs%7D%7Bl%5E%7Bi%7D%28%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%29%7D, https://www.zhihu.com/equation?tex=L%28%5Cphi%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bbs%7D%7Bl%5E%7Bi%7D%28%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%29%7D 1.5x, https://www.zhihu.com/equation?tex=L%28%5Cphi%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bbs%7D%7Bl%5E%7Bi%7D%28%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%29%7D 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=L%28%5Cphi%29%3D%5Csum_%7Bi%3D1%7D%5E%7Bbs%7D%7Bl%5E%7Bi%7D%28%5Chat%7B%5Ctheta%7D%5E%7Bi%7D%29%7D"
+        title="[公式]" /> ，这个损失函数就是一个<strong>batch task</strong>中<strong>每个task</strong>的<strong>query set</strong>的损失函数之和</li>
+<li>获得<strong>总损失函数</strong>后，我们就要对其进行<strong>第二种的梯度下降</strong>。即更新初始化参数 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Cphi"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Cphi, https://www.zhihu.com/equation?tex=%5Cphi 1.5x, https://www.zhihu.com/equation?tex=%5Cphi 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Cphi"
+        title="[公式]" /> ，也就是 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Cphi%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;L%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Cphi%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;L%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi, https://www.zhihu.com/equation?tex=%5Cphi%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;L%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 1.5x, https://www.zhihu.com/equation?tex=%5Cphi%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;L%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Cphi%5CLeftarrow%5Cphi&#43;-%5Ceta.%5Cpartial&#43;L%28%5Cphi%29%2F%5Cpartial&#43;%5Cphi"
+        title="[公式]" /> 来更新初始化参数。这样不断地从步骤3开始训练，最终能够在数据集上获得该模型比较好的初始化参数（若无法对<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Cphi"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Cphi, https://www.zhihu.com/equation?tex=%5Cphi 1.5x, https://www.zhihu.com/equation?tex=%5Cphi 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Cphi"
+        title="[公式]" />进行学习，使用强化学习训练)</li>
+</ul>
+<blockquote>
+<p>关于以上过程补充以下解释：假设原模型为<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Ctheta_a"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Ctheta_a, https://www.zhihu.com/equation?tex=%5Ctheta_a 1.5x, https://www.zhihu.com/equation?tex=%5Ctheta_a 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Ctheta_a"
+        title="[公式]" />，我们复制它得到<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Ctheta_b"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Ctheta_b, https://www.zhihu.com/equation?tex=%5Ctheta_b 1.5x, https://www.zhihu.com/equation?tex=%5Ctheta_b 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Ctheta_b"
+        title="[公式]" />，在<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Ctheta_b"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Ctheta_b, https://www.zhihu.com/equation?tex=%5Ctheta_b 1.5x, https://www.zhihu.com/equation?tex=%5Ctheta_b 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Ctheta_b"
+        title="[公式]" />上通过反向传播更新参数，得到第一次梯度更新结果<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Ctheta_b%27"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Ctheta_b%27, https://www.zhihu.com/equation?tex=%5Ctheta_b%27 1.5x, https://www.zhihu.com/equation?tex=%5Ctheta_b%27 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Ctheta_b%27"
+        title="[公式]" />，在结果<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Ctheta_b%27"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Ctheta_b%27, https://www.zhihu.com/equation?tex=%5Ctheta_b%27 1.5x, https://www.zhihu.com/equation?tex=%5Ctheta_b%27 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Ctheta_b%27"
+        title="[公式]" />上进行第二次梯度更新，此时需要在结果上计算梯度，<strong>但梯度更新的并不是<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Ctheta_b%27"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Ctheta_b%27, https://www.zhihu.com/equation?tex=%5Ctheta_b%27 1.5x, https://www.zhihu.com/equation?tex=%5Ctheta_b%27 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Ctheta_b%27"
+        title="[公式]" />，而是原模型<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.zhihu.com/equation?tex=%5Ctheta_a"
+        data-srcset="https://www.zhihu.com/equation?tex=%5Ctheta_a, https://www.zhihu.com/equation?tex=%5Ctheta_a 1.5x, https://www.zhihu.com/equation?tex=%5Ctheta_a 2x"
+        data-sizes="auto"
+        alt="https://www.zhihu.com/equation?tex=%5Ctheta_a"
+        title="[公式]" /></strong></p>
+</blockquote>
+<h1 id="参考资料">参考资料</h1>
+<p>[1] <a href="https://arxiv.org/abs/1703.03400" target="_blank" rel="noopener noreffer">Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks</a></p>
+<p>[2] <a href="https://zhuanlan.zhihu.com/p/57864886" target="_blank" rel="noopener noreffer">Model-Agnostic Meta-Learning （MAML）模型介绍及算法详解</a></p>
+<p>[3] <a href="https://zhuanlan.zhihu.com/p/181709693" target="_blank" rel="noopener noreffer">[meta-learning] 对MAML的深度解析</a></p>
+<p>[4] <a href="https://zhuanlan.zhihu.com/p/136975128" target="_blank" rel="noopener noreffer">一文入门元学习（Meta-Learning）（附代码）</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-10-23</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/maml-introduction/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://yukiyousa.cn/maml-introduction/" data-title="Model-Agnostic Meta-Learning（MAML）介绍与算法分析" data-hashtags="深度学习,笔记"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://yukiyousa.cn/maml-introduction/" data-hashtag="深度学习"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://yukiyousa.cn/maml-introduction/" data-title="Model-Agnostic Meta-Learning（MAML）介绍与算法分析"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://yukiyousa.cn/maml-introduction/" data-title="Model-Agnostic Meta-Learning（MAML）介绍与算法分析"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://yukiyousa.cn/maml-introduction/" data-title="Model-Agnostic Meta-Learning（MAML）介绍与算法分析" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>,&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hugo-githubpages%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="prev" rel="prev" title="Hugo&#43;GithubPages搭建博客教程"><i class="fas fa-angle-left fa-fw"></i>Hugo&#43;GithubPages搭建博客教程</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
