@@ -10,7 +10,7 @@
 
 :link:[Klay Sun](https://syy11.cn/): 择栖&前端大佬 孙哥哥
 
-:link:[sharifxu](https://sharifxu.top/): 嵌入式&区块链安全 小马哥
+:link:[yuzhu](https://yuzhu.ink/): 嵌入式&区块链安全 小马哥
 
 :link:[su29029](https://su29029.github.io/): web全栈&安全开发 苏佬
 
