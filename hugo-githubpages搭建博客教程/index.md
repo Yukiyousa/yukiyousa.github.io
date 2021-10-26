@@ -115,7 +115,7 @@ timezone: UTC+8
 
 `GitHubPages`  是一项静态站点托管服务，它直接从 GitHub 上的仓库获取 index.html、HTML、CSS 和 JavaScript 文件，也可以通过构建过程运行文件，然后发布网站。我们使用  `GitHubPages` 搭建个人网站
 
-（1）创建一个新的 Github 项目，项目名称需要是 `<username.github.io>`格式，最好先**不要**选择创建 `README.md` 文件
+（1）创建一个新的 Github 项目，项目名称需要是 `<username.github.io>`格式，这里的 username 是 Github 的用户名，最好先**不要**选择创建 `README.md` 文件
 
 （2）生成静态页面之前需要修改 `config.toml` 文件中的 `baseURL` 配置，将其修改为个人站点，即`https://yourname.github.io`
 

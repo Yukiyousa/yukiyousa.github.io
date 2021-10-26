@@ -27,7 +27,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/yukiyousa.cn\/maml-introduction\/"
-        },"image": ["https:\/\/yukiyousa.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "深度学习, 笔记","wordcount":  1891 ,
+        },"image": ["https:\/\/yukiyousa.cn\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "深度学习, 笔记","wordcount":  1885 ,
         "url": "https:\/\/yukiyousa.cn\/maml-introduction\/","datePublished": "2021-10-23T00:00:00+00:00","dateModified": "2021-10-23T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx","logo": "https:\/\/yukiyousa.cn\/images\/avatar.png"},"author": {
@@ -77,7 +77,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Model-Agnostic Meta-Learning（MAML）介绍与算法分析</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Yuki</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/notes/"><i class="far fa-folder fa-fw"></i>Notes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-23">2021-10-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1891 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-23">2021-10-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1885 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -105,9 +105,9 @@
 </nav></div>
             </div><div class="content" id="content"><h1 id="1meta-learning">1.Meta-Learning</h1>
 <h2 id="11介绍">1.1介绍</h2>
-<p>常见的深度学习模型，目的是学习一个用于预测的网络模型，比如能够实现猫狗分类的模型，我们学习训练的是<strong>模型的参数</strong>，学习的目的是让最终训练好的参数在数据集上的准确率越高，但 <code>Meta Learning</code> 面向是的学习的过程而非结果，如我们在学习英语时，若是模仿apple 的发音，我们能很快的学会说这个单词，但当我们碰到新的单词如 banana 时会无从下手，这就是我们学习音标的原因，学习音标的过程正是元学习的体现。</p>
-<p>（1）<code>Meta Learning</code> 中文翻译为“元学习”，它研究的不是如何提升模型解决某项具体的任务（分类，回归，检测）的能力，而是研究如何提升模型解决一系列任务的能力；Meta learning 即 learn to learn ，我们希望机器学习怎样去学习这件事情，就是学会语音辨识、图像辨识以后，它学会了如何去学习学习这件事情，而不是停留在语音和图像的任务上。</p>
-<p>（2）我们希望通过 <code>meta-learning</code> 学习出一个<strong>非常好</strong>的<strong>模型初始化参数</strong>，有了这个初始化参数后，我们只需要<strong>少量的样本</strong>就可以快速在这个模型中进行收敛。</p>
+<p>常见的深度学习模型，目的是学习一个用于预测的网络模型，比如能够实现猫狗分类的模型，我们学习训练的是<strong>模型的参数</strong>，学习的目的是让最终训练好的参数在数据集上的准确率越高，但 <code>Meta Learning</code> 面向是的学习的过程而非结果，如我们在学习英语时，若是模仿apple 的发音，我们能很快的学会说这个单词，但当我们碰到新的单词如 banana 时会无从下手，这就是我们学习音标的原因，学习音标的过程正是元学习的体现</p>
+<p>（1）<code>Meta Learning</code> 中文翻译为“元学习”，它研究的不是如何提升模型解决某项具体的任务（分类，回归，检测）的能力，而是研究如何提升模型解决一系列任务的能力；Meta learning 即 learn to learn ，我们希望机器学习怎样去学习这件事情，就是学会语音辨识、图像辨识以后，它学会了如何去学习学习这件事情，而不是停留在语音和图像的任务上</p>
+<p>（2）我们希望通过 <code>meta-learning</code> 学习出一个<strong>非常好</strong>的<strong>模型初始化参数</strong>，有了这个初始化参数后，我们只需要<strong>少量的样本</strong>就可以快速在这个模型中进行收敛</p>
 <blockquote>
 <p>meta-learning 在 few-shot 中经常使用，因为 meta learning  的训练任务很多，因此每个任务的样本很少。</p>
 </blockquote>
@@ -159,7 +159,7 @@ $$</p>
 </div>
 <h2 id="13相关概念">1.3相关概念</h2>
 <h3 id="131-n-way-k-shot">1.3.1 N-way K-shot</h3>
-<p>在 <code>few-shot learning</code> 中有一个术语叫做 <code>N-way K-shot</code> 问题，简单的说就是我们需要分类的样本属于 N 个类中一种，但是我们每个类训练集中的样本只有 K 个，即一共只有 N ∗ K 个样本的类别是已知的。</p>
+<p>在 <code>few-shot learning</code> 中有一个术语叫做 <code>N-way K-shot</code> 问题，简单的说就是我们需要分类的样本属于 N 个类中一种，但是我们每个类训练集中的样本只有 K 个，即一共只有 N ∗ K 个样本的类别是已知的</p>
 <h3 id="132-task">1.3.2 task</h3>
 <p>既然是学会学习，那么输入就不是简简单单的数据了，而是一组一组的 <code>task</code> ，比如猫狗分类、水果分类等等都是一个个 <code>task</code> ，那么这些 <code>task</code> 应该如何分类呢？</p>
 <p>在 machine learning 中，准备训练集和测试集，在 meta learning 中，准备训练任务及其对应的资料</p>
@@ -175,7 +175,7 @@ $$</p>
 <h1 id="2maml">2.MAML</h1>
 <h2 id="21基本思想">2.1基本思想</h2>
 <p>（1）目的：学 MAML 的思想是学习一套初始化参数 ，这个初始化参数在遇到新的问题时，只需要使用少量的样本 (few-shot learning) 进行几步梯度下降就可以取得很好地效果</p>
-<p>（2）方法：定义损失函数，提供一套初始化参数，然后让网络在不同 task 上去训练，最终得到属于不同task的网络参数，然后评估这些不同的网络参数在各自 task 上的测试集里表现如何，得知最初的这套初始化参数到底怎么样。</p>
+<p>（2）方法：定义损失函数，提供一套初始化参数，然后让网络在不同 task 上去训练，最终得到属于不同task的网络参数，然后评估这些不同的网络参数在各自 task 上的测试集里表现如何，得知最初的这套初始化参数到底怎么样</p>
 <div align=center>
 <img src="https://img-blog.csdnimg.cn/20191008213431186.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoYW95dWUxMjM0,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom: 33%;" />
 </div>
@@ -189,7 +189,7 @@ $$</p>
 <img src="https://s1.imagehub.cc/images/2021/10/23/contrast1bece23ba68f2b27.png" alt="image" />
 </div>
 <h2 id="23算法流程">2.3算法流程</h2>
-<p>MAML中是存在<strong>两种梯度下降</strong>的，也就是<strong>gradient by gradient</strong>。<strong>第一种梯度下降</strong>是每个task都会执行的，而<strong>第二种梯度下降</strong>只有等batch size个task全部完成第一种梯度下降后才会执行的。</p>
+<p>MAML中是存在<strong>两种梯度下降</strong>的，也就是<strong>gradient by gradient</strong>。<strong>第一种梯度下降</strong>是每个task都会执行的，而<strong>第二种梯度下降</strong>只有等batch size个task全部完成第一种梯度下降后才会执行的</p>
 <div align=center>
 <img src="https://s1.imagehub.cc/images/2021/09/22/4S5OBIIQ8A5CN_71CO.png" alt="image" />
 </div>
