@@ -11,7 +11,7 @@
 
 （2）我们希望通过 `meta-learning` 学习出一个**非常好**的**模型初始化参数**，有了这个初始化参数后，我们只需要**少量的样本**就可以快速在这个模型中进行收敛
 
-> meta-learning 在 few-shot 中经常使用，因为 meta learning  的训练任务很多，因此每个任务的样本很少。
+> meta-learning 在 few-shot 中经常使用，因为 meta learning  的训练任务很多，因此每个任务的样本很少
 
 （3）在 `meta-learning` 中，把学习算法也当作一个函数 F ，吃进去的是训练资料，吐出来另外一个function，要找一个函数 F，输入是训练资料输出是模型
 
