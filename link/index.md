@@ -16,7 +16,7 @@
 
 :link:[Zhenyu He](https://hzy0.xyz/): THU RA&NLP&DM 何神
 
-:link:[rufus](https://rufus844789771.gitee.io/): 六只羊
+:link:[rufus](https://rufus844789771.gitee.io/): 择栖 六只羊
 
 :link:[Yiling He](https://e0hyl.github.io/BLOG-OF-E0/): 信安大赛前辈&ZJU直博
 
