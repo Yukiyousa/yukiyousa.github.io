@@ -152,7 +152,6 @@ git push -u origin master
 在配置个人域名之前，我们需要一些前置知识（以阿里云为例）
 
 - 域名，简单来说就是访问博客的链接，我们需要购买自己的域名。可以通过阿里云选择[域名](https://wanwang.aliyun.com/?spm=5176.12825654.eofdhaal5.9.3dbd2c4aYvnkSD)
-- 在阿里云购买域名过程中需要实名认证，实名认证后需要进行备案，可以通过阿里云APP方便操作。
 - DNS解析，简单来说就是解析域名和IP的对应关系。具体可参考[阿里云域名购买与DNS解析教程](https://blog.csdn.net/shaock2018/article/details/91358968)。在cmd中输入 `ping +域名  `，丢包率为0则解析成功~
 
 （1）当你拥有域名后，首先是用 `ping ` 命令找到存放你的 `GitHubPages`  的主机的IP地址，在终端里面用命令 `ping yourname.github.io` 便可完成，回复地址即我们要找的IP地址
