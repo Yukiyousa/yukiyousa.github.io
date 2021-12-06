@@ -3,6 +3,8 @@
 
 ## About me
 
+Yizhuo Ma
+
 I am currently a junior majoring in software engineering at University of Electronic Science and Technology of China, member of [ZeQi Studio](https://sise.uestc.edu.cn/info/1049/4169.htm).
 ## Education Experience
 
