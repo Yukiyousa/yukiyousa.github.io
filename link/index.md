@@ -23,7 +23,7 @@
 
 :link:[su29029](https://su29029.github.io/): web全栈 | 安全开发 苏佬
 
-:link:[Zhenyu He](https://hzy0.xyz/): THU RA | NLP | DM 何神
+:link:[Zhenyu He](https://hzy0.xyz/): MSRA | THU RA | NLP | DM 何神
 
 :link:[rufus](https://rufus844789771.gitee.io/): 择栖 六只羊
 
