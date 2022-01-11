@@ -16,6 +16,7 @@ I am currently a junior majoring in software engineering at University of Electr
 
 - The First Prize Scholarship    2020
 - Excellent Student Scholarship    2020,2021
+- A-level certificate of comprehensive quality of college students in Sichuan Province
 - National Second Prize of National College Student Information Security Contest(CISCN)    2021
 - National Third Prize of The 17th Challenge Cup Special Competition    2021
 - ...
